@@ -29,7 +29,7 @@
                     <p x-text="title"></p>
                     <button @click="title='Alpine Rocks!'">click me</button>
                 </div>
-
+                
             </div>
         </div>
         <div class="row">
@@ -44,44 +44,48 @@
             </div>
             <div class="col-6">
                 <h3>Timer countdown component</h3>
-                <div x-data="{
-                    countdown: 60,
-                    start: null,  
-                    stop: null, 
-                    interval: null,
-                    resetBtn: false,
-                    stopBtn: false
-                }">
 
-                    <button x-show="!start" @click="
-                        start = Date.now()
-                        current = start
-                        stopBtn = true
-                        interval = setInterval(() => {countdown-- }, 1000)
-                    ">Start</button>
+         <div x-data="{
+            countdown: 5,
+            start: null,  
+            stop: null, 
+            interval: null,
+            resetBtn: false,
+            stopBtn: false
+        }">
 
-                    <div x-show="!resetBtn && stopBtn">
-                        <button @click="
-                            clearInterval(interval)
-                            resetBtn= true
+            <button x-show="!start" @click="
+                start = Date.now()
+                current = start
+                stopBtn = true
+                interval = setInterval(() => {if(countdown > 0){
+                countdown--}}, 1000)
+            ">Start</button>
+
+            <div x-show="!resetBtn && stopBtn">
+                <button @click="
+                    clearInterval(interval)
+                    resetBtn= true
+            stopBtn= false
+                ">Stop</button>
+                <p><span x-text="countdown"></span> Seconds</p>
+            </div>
+
+            <div x-show="resetBtn">
+                <button @click="
+                    start = null
+                    stop = null
+                    resetBtn= false
                     stopBtn= false
-                        ">Stop</button>
-                        <p><span x-text="countdown"></span> Seconds</p>
-                    </div>
-
-                    <div x-show="resetBtn">
-                        <button @click="
-                            start = null
-                            stop = null
-                            resetBtn= false
-                            stopBtn= false
-                            countdown = 60
-                        ">Reset</button>
-                        <p><span x-text="countdown"></span> Seconds</p>
-                    </div>
-                </div>
+                    countdown = 5
+                ">Reset</button>
+                <p><span x-text="countdown"></span> Seconds</p>
             </div>
         </div>
+            </div>
+        </div>
+        
+    </div>
         <div class="row">
             <div class="col-6">
                 <h3>Show an element</h3>
@@ -113,9 +117,9 @@
                 <div x-data="{ code: '<p>Dynamic Paragraph</p>' }">
                     <div x-html="code"></div>
                 </div>
-
+                
             </div>
-        </div>
+            </div>
         <div class="row">
             <div class="col-6">
                 <h3>Reference element with a specific name</h3>
@@ -123,7 +127,7 @@
                     <div x-ref="sentence">I am a sentence</div>
                     <button @click="$refs.sentence.innerText = 'I just changed'">Change Sentence</button>
                 </div>
-            </div>
+                </div>
             <div class="col-6">
                 <h3>Show or hide elements based on a condition</h3>
                 <div x-data="{ socks: 'blue' }">
@@ -138,7 +142,7 @@
                     </template>
                     <button @click="socks = 'green'">Change Socks</button>
                     <button @click="socks = 'pink'">Change Socks</button>
-
+    
                 </div>
 
             </div>
@@ -148,15 +152,15 @@
                 <h3>Loops through an array of items inside of component</h3>
                 <div x-data="{ groceries: ['Milk', 'Eggs', 'Cheese'] }">
                     <h4>Groceries</h4>
-                    <template x-for="item in groceries">
-                        <ul x-text="item"></ul>
-                    </template>
-
+                        <template x-for="item in groceries">
+                            <ul x-text="item"></ul>
+                        </template>
+                    
                 </div>
-
+                
             </div>
         </div>
-    </div>
+        </div>
     </div>
 </body>
 
