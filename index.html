@@ -14,6 +14,7 @@
 <body>
 
     <div class="container">
+        <div class="center">
         <div class="row">
             <h1>My Alpine Tutorial Project</h1>
             <div class="col-6">
@@ -45,8 +46,9 @@
             <div class="col-6">
                 <h3>Timer countdown component</h3>
 
+                
          <div x-data="{
-            countdown: 5,
+            countdown: 60,
             start: null,  
             stop: null, 
             interval: null,
@@ -54,7 +56,7 @@
             stopBtn: false
         }">
 
-            <button x-show="!start" @click="
+            <button @click="
                 start = Date.now()
                 current = start
                 stopBtn = true
@@ -62,26 +64,24 @@
                 countdown--}}, 1000)
             ">Start</button>
 
-            <div x-show="!resetBtn && stopBtn">
+           
                 <button @click="
                     clearInterval(interval)
                     resetBtn= true
-            stopBtn= false
-                ">Stop</button>
-                <p><span x-text="countdown"></span> Seconds</p>
-            </div>
-
-            <div x-show="resetBtn">
-                <button @click="
-                    start = null
-                    stop = null
-                    resetBtn= false
                     stopBtn= false
-                    countdown = 5
+                ">Stop</button>
+                
+                <button @click="
+                start = null
+                stop = null
+                resetBtn= false
+                stopBtn= false
+                countdown = 60
                 ">Reset</button>
                 <p><span x-text="countdown"></span> Seconds</p>
+                
             </div>
-        </div>
+        
             </div>
         </div>
         
@@ -105,7 +105,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <h3>bind a variable to a form element: textbox</h3>
+                <h3>Bind a variable to a textbox</h3>
                 <div x-data="{ title: 'AlpineJS is Awesome' }">
                     <p x-text="title"></p>
                     <input type="text" x-model="title">
@@ -161,6 +161,7 @@
             </div>
         </div>
         </div>
+    </div>
     </div>
 </body>
 
